@@ -76,6 +76,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\Match.cs" />
+    <Compile Include="Data\MatchDay.cs" />
     <Compile Include="Data\MatchesHelper.cs" />
     <Compile Include="Data\Team.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -110,6 +111,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Flags\Egypt.png" />
+    <Resource Include="Flags\Russia.png" />
+    <Resource Include="Flags\SaudiArabia.png" />
+    <Resource Include="Flags\Uruguay.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

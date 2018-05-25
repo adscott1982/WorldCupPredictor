@@ -20,24 +20,43 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Style="{StaticResource Header}" Grid.Row="0" Text="Fixtures"/>
+            <TextBlock Style="{StaticResource Header1}" Grid.Row="0" Text="Fixtures"/>
 
-            <ListView BorderThickness="0" Grid.Row="1" Margin="3" ItemsSource="{Binding MatchDays}">
+            <ListView BorderThickness="0" Grid.Row="1" Margin="3" ItemsSource="{Binding MatchDays}" HorizontalContentAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <ItemContainerTemplate>
-                        <Grid HorizontalAlignment="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding Key}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Time.Hour}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Time.Minute}"/>
-                            <TextBlock Grid.Column="3" Text="{Binding TeamAway.Name}"/>
-                        </Grid>
+                        <StackPanel Margin="5">
+                            <TextBlock Style="{StaticResource Header2}" HorizontalAlignment="Center" Text="{Binding Day, StringFormat='{}{0:dddd dd MMM}'}" />
+                            <ListView ItemsSource="{Binding Matches}" BorderThickness="0" HorizontalContentAlignment="Stretch">
+                                <ListView.ItemTemplate>
+                                    <ItemContainerTemplate>
+                                        <StackPanel>
+                                            <TextBlock HorizontalAlignment="Center" Text="{Binding Time, StringFormat='{}{0:HH:mm}'}" />
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Height="50" Grid.Column="0" Source="{Binding TeamHome.ImagePath}" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding TeamHome.Name}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                                <TextBox Grid.Column="2" Width="20" Margin="5,0" VerticalAlignment="Center" />
+                                                <TextBlock Grid.Column="3" Text="vs" VerticalAlignment="Center"/>
+                                                <TextBox Grid.Column="4" Width="20" Margin="5,0" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="5" Text="{Binding TeamAway.Name}" VerticalAlignment="Center"/>
+                                                <Image Height="50" Grid.Column="6" Source="{Binding TeamAway.ImagePath}" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </StackPanel>
+                                        
+                                    </ItemContainerTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+
                     </ItemContainerTemplate>
                 </ListView.ItemTemplate>
             </ListView>

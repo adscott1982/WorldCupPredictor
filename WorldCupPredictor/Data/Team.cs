@@ -7,6 +7,8 @@
             this.Name = name;
         }
 
+        public string ImagePath => $@"\Flags\{Name.Replace(" ", string.Empty)}.png";
+
         public string Name { get; }
 
         internal static Team Russia => new Team("Russia");
