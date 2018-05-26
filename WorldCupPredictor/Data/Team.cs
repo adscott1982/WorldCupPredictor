@@ -7,7 +7,7 @@
             this.Name = name;
         }
 
-        public string ImagePath => $@"\Flags\{Name.Replace(" ", string.Empty)}.png";
+        public string ImagePath => $@"\Flags\{Name}.png";
 
         public string Name { get; }
 
@@ -18,6 +18,7 @@
         internal static Team Portugal => new Team("Portugal");
         internal static Team Spain => new Team("Spain");
         internal static Team Morocco => new Team("Morocco");
+        internal static Team Iran => new Team("Iran");
         internal static Team France => new Team("France");
         internal static Team Australia => new Team("Australia");
         internal static Team Peru => new Team("Peru");

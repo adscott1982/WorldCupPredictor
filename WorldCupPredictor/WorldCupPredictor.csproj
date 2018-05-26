@@ -112,11 +112,40 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Flags\Argentina.png" />
+    <Resource Include="Flags\Australia.png" />
+    <Resource Include="Flags\Belgium.png" />
+    <Resource Include="Flags\Brazil.png" />
+    <Resource Include="Flags\Colombia.png" />
+    <Resource Include="Flags\Costa Rica.png" />
+    <Resource Include="Flags\Croatia.png" />
+    <Resource Include="Flags\Denmark.png" />
+    <Resource Include="Flags\England.png" />
+    <Resource Include="Flags\France.png" />
+    <Resource Include="Flags\Germany.png" />
+    <Resource Include="Flags\Iceland.png" />
+    <Resource Include="Flags\Iran.png" />
+    <Resource Include="Flags\Japan.png" />
+    <Resource Include="Flags\Mexico.png" />
+    <Resource Include="Flags\Morocco.png" />
+    <Resource Include="Flags\Nigeria.png" />
+    <Resource Include="Flags\Panama.png" />
+    <Resource Include="Flags\Peru.png" />
+    <Resource Include="Flags\Poland.png" />
+    <Resource Include="Flags\Portugal.png" />
+    <Resource Include="Flags\Saudi Arabia.png" />
+    <Resource Include="Flags\Senegal.png" />
+    <Resource Include="Flags\Serbia.png" />
+    <Resource Include="Flags\South Korea.png" />
+    <Resource Include="Flags\Spain.png" />
+    <Resource Include="Flags\Sweden.png" />
+    <Resource Include="Flags\Switzerland.png" />
+    <Resource Include="Flags\Tunisia.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Flags\Egypt.png" />
     <Resource Include="Flags\Russia.png" />
-    <Resource Include="Flags\SaudiArabia.png" />
     <Resource Include="Flags\Uruguay.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
