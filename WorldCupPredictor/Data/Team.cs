@@ -2,7 +2,11 @@
 {
     public class Team
     {
-        public Team(string name)
+        private Team()
+        {
+        }
+
+        internal Team(string name)
         {
             this.Name = name;
         }
@@ -10,38 +14,124 @@
         public string ImagePath => $@"\Flags\{Name}.png";
 
         public string Name { get; }
+    }
 
-        internal static Team Russia => new Team("Russia");
-        internal static Team SaudiArabia => new Team("Saudi Arabia");
-        internal static Team Egypt => new Team("Egypt");
-        internal static Team Uruguay => new Team("Uruguay");
-        internal static Team Portugal => new Team("Portugal");
-        internal static Team Spain => new Team("Spain");
-        internal static Team Morocco => new Team("Morocco");
-        internal static Team Iran => new Team("Iran");
-        internal static Team France => new Team("France");
-        internal static Team Australia => new Team("Australia");
-        internal static Team Peru => new Team("Peru");
-        internal static Team Denmark => new Team("Denmark");
-        internal static Team Argentina => new Team("Argentina");
-        internal static Team Iceland => new Team("Iceland");
-        internal static Team Croatia => new Team("Croatia");
-        internal static Team Nigeria => new Team("Nigeria");
-        internal static Team Brazil => new Team("Brazil");
-        internal static Team Switzerland => new Team("Switzerland");
-        internal static Team CostaRica => new Team("Costa Rica");
-        internal static Team Serbia => new Team("Serbia");
-        internal static Team Germany => new Team("Germany");
-        internal static Team Mexico => new Team("Mexico");
-        internal static Team Sweden => new Team("Sweden");
-        internal static Team SouthKorea => new Team("South Korea");
-        internal static Team Belgium => new Team("Belgium");
-        internal static Team Panama => new Team("Panama");
-        internal static Team Tunisia => new Team("Tunisia");
-        internal static Team England => new Team("England");
-        internal static Team Colombia => new Team("Colombia");
-        internal static Team Japan => new Team("Japan");
-        internal static Team Poland => new Team("Poland");
-        internal static Team Senegal => new Team("Senegal");
+    public class Teams
+    {
+        private static Teams instance = null;
+        private Team russia;
+        private Team saudiArabia;
+        private Team egypt;
+        private Team uruguay;
+        private Team portugal;
+        private Team spain;
+        private Team morocco;
+        private Team iran;
+        private Team france;
+        private Team australia;
+        private Team peru;
+        private Team denmark;
+        private Team argentina;
+        private Team iceland;
+        private Team croatia;
+        private Team nigeria;
+        private Team brazil;
+        private Team switzerland;
+        private Team costaRica;
+        private Team serbia;
+        private Team germany;
+        private Team mexico;
+        private Team sweden;
+        private Team southKorea;
+        private Team belgium;
+        private Team panama;
+        private Team tunisia;
+        private Team england;
+        private Team colombia;
+        private Team japan;
+        private Team poland;
+        private Team senegal;
+
+        private Teams()
+        {
+            this.russia = new Team("Russia");
+            this.saudiArabia = new Team("Saudi Arabia");
+            this.egypt = new Team("Egypt");
+            this.uruguay = new Team("Uruguay");
+            this.portugal = new Team("Portugal");
+            this.spain = new Team("Spain");
+            this.morocco = new Team("Morocco");
+            this.iran = new Team("Iran");
+            this.france = new Team("France");
+            this.australia = new Team("Australia");
+            this.peru = new Team("Peru");
+            this.denmark = new Team("Denmark");
+            this.argentina = new Team("Argentina");
+            this.iceland = new Team("Iceland");
+            this.croatia = new Team("Croatia");
+            this.nigeria = new Team("Nigeria");
+            this.brazil = new Team("Brazil");
+            this.switzerland = new Team("Switzerland");
+            this.costaRica = new Team("Costa Rica");
+            this.serbia = new Team("Serbia");
+            this.germany = new Team("Germany");
+            this.mexico = new Team("Mexico");
+            this.sweden = new Team("Sweden");
+            this.southKorea = new Team("South Korea");
+            this.belgium = new Team("Belgium");
+            this.panama = new Team("Panama");
+            this.tunisia = new Team("Tunisia");
+            this.england = new Team("England");
+            this.colombia = new Team("Colombia");
+            this.japan = new Team("Japan");
+            this.poland = new Team("Poland");
+            this.senegal = new Team("Senegal");
+        }
+
+        internal static Teams Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Teams();
+                }
+
+                return instance;
+            }
+        }
+
+        internal static Team Russia => Instance.russia;
+        internal static Team SaudiArabia => Instance.saudiArabia;
+        internal static Team Egypt => Instance.egypt;
+        internal static Team Uruguay => Instance.uruguay;
+        internal static Team Portugal => Instance.portugal;
+        internal static Team Spain => Instance.spain;
+        internal static Team Morocco => Instance.morocco;
+        internal static Team Iran => Instance.iran;
+        internal static Team France => Instance.france;
+        internal static Team Australia => Instance.australia;
+        internal static Team Peru => Instance.peru;
+        internal static Team Denmark => Instance.denmark;
+        internal static Team Argentina => Instance.argentina;
+        internal static Team Iceland => Instance.iceland;
+        internal static Team Croatia => Instance.croatia;
+        internal static Team Nigeria => Instance.nigeria;
+        internal static Team Brazil => Instance.brazil;
+        internal static Team Switzerland => Instance.switzerland;
+        internal static Team CostaRica => Instance.costaRica;
+        internal static Team Serbia => Instance.serbia;
+        internal static Team Germany => Instance.germany;
+        internal static Team Mexico => Instance.mexico;
+        internal static Team Sweden => Instance.sweden;
+        internal static Team SouthKorea => Instance.southKorea;
+        internal static Team Belgium => Instance.belgium;
+        internal static Team Panama => Instance.panama;
+        internal static Team Tunisia => Instance.tunisia;
+        internal static Team England => Instance.england;
+        internal static Team Colombia => Instance.colombia;
+        internal static Team Japan => Instance.japan;
+        internal static Team Poland => Instance.poland;
+        internal static Team Senegal => Instance.senegal;
     }
 }

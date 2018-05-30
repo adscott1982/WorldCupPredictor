@@ -6,12 +6,15 @@ namespace WorldCupPredictor.Data
     {
         private DateTime time;
 
-        public Match(DateTime time, Team teamHome, Team teamAway)
+        public Match(int id, DateTime time, Team teamHome, Team teamAway)
         {
+            this.Id = id;
             this.time = time;
             this.TeamHome = teamHome;
             this.TeamAway = teamAway;
         }
+
+        public int Id { get; }
 
         public DateTime Time => this.time.ToLocalTime();
 

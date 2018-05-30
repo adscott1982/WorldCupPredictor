@@ -18,6 +18,5 @@ namespace WorldCupPredictor
             get => this._matchDays;
             set => this.SetProperty(ref this._matchDays, value);
         }
-
     }
 }
