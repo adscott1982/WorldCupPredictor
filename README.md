@@ -1,2 +1,2 @@
 # WorldCupPredictor
-Tool to predict world cup scores
+Small app to allow prediction of the World Cup 2018 group stage matches.
