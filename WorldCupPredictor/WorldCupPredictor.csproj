@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\Group.cs" />
     <Compile Include="Data\Match.cs" />
     <Compile Include="Data\MatchDay.cs" />
     <Compile Include="Data\MatchesHelper.cs" />

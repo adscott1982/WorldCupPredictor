@@ -14,6 +14,8 @@
         public string ImagePath => $@"\Flags\{Name}.png";
 
         public string Name { get; }
+
+        public Group Group { get; set; }
     }
 
     public class Teams
