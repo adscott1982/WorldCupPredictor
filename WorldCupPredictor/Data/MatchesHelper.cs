@@ -24,7 +24,7 @@ namespace WorldCupPredictor.Data
 
         private static IEnumerable<Match> GetAllMatches()
         {
-            return Groups.All.SelectMany(group => group.Matches);
+            return Groups.All.SelectMany(group => group.Matches).OrderBy(match => match.Time);
         }
     }
 }

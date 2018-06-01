@@ -21,15 +21,21 @@
         <Style x:Key="TextBoxNormal" TargetType="TextBox">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="MinWidth" Value="35"/>
+            <Setter Property="Width" Value="40"/>
             <Setter Property="Margin" Value="15,0"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
 
             <Style.Triggers>
-                <Trigger Property="IsFocused" Value="False">
-                    <Setter Property="BorderThickness" Value="0" />
+                <Trigger Property="Text" Value="">
+                    <Setter Property="BorderThickness" Value="1" />
+                </Trigger>
+                
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="Green" />
                 </Trigger>
             </Style.Triggers>
         </Style>

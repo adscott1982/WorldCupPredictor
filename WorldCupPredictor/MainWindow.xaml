@@ -37,11 +37,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <ListView BorderThickness="0" Grid.Row="0" Grid.Column="0" Margin="3" ItemsSource="{Binding MatchDays}" 
+            <ListView BorderThickness="0" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding MatchDays}" 
                       HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" ItemContainerStyle="{StaticResource ItemNonHighlight}">
                 <ListView.ItemTemplate>
                     <ItemContainerTemplate>
-                        <StackPanel Margin="5">
+                        <StackPanel >
                             <TextBlock Style="{StaticResource Header2}" HorizontalAlignment="Center" Text="{Binding Day, StringFormat='{}{0:dddd dd MMMM}'}" />
                             <ListView ItemsSource="{Binding Matches}" BorderThickness="0" ItemContainerStyle="{StaticResource ItemNonHighlight}"
                                       HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False">
@@ -67,7 +67,7 @@
                                                 <TextBlock Style="{StaticResource Normal}" Grid.Column="1" Text="{Binding TeamHome.Name}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                                 <TextBox Grid.Column="2" Style="{StaticResource TextBoxNormal}"/>
                                                 <TextBlock Style="{StaticResource Normal}"  Grid.Column="3" Text="{Binding Time, StringFormat='{}{0:HH:mm}'}" VerticalAlignment="Center"/>
-                                                <TextBox Grid.Column="4" MinWidth="35" Margin="15,0" TextAlignment="Center" VerticalAlignment="Center"  Padding="5" Style="{StaticResource TextBoxNormal}"/>
+                                                <TextBox Grid.Column="4" Style="{StaticResource TextBoxNormal}"/>
                                                 <TextBlock Style="{StaticResource Normal}"  Grid.Column="5" Text="{Binding TeamAway.Name}" VerticalAlignment="Center"/>
                                                 <Image Height="50" Grid.Column="6" Source="{Binding TeamAway.ImagePath}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                                             </Grid>
