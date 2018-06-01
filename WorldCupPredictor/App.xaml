@@ -17,5 +17,21 @@
         <Style x:Key="Normal" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>
         </Style>
+
+        <Style x:Key="TextBoxNormal" TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="MinWidth" Value="35"/>
+            <Setter Property="Margin" Value="15,0"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="False">
+                    <Setter Property="BorderThickness" Value="0" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>
