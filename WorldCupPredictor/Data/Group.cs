@@ -33,6 +33,11 @@ namespace WorldCupPredictor.Data
         public string Name { get; }
         public List<Match> Matches { get; }
         public List<Team> Teams { get; }
+
+        public override string ToString()
+        {
+            return $"{this.Name}";
+        }
     }
 
     public class Groups
