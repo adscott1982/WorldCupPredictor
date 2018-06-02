@@ -22,5 +22,20 @@ namespace WorldCupPredictor.Data
 
         public Team TeamAway { get; }
 
+        public int HomeScore { get; }
+
+        public int AwayScore { get; }
+
+        public Result Result => 
+            HomeScore == AwayScore ? Result.Draw :
+            HomeScore > AwayScore ? Result.HomeWin :
+            Result.AwayWin;
+    }
+
+    public enum Result
+    {
+        Draw,
+        HomeWin,
+        AwayWin
     }
 }

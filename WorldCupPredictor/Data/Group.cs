@@ -6,6 +6,8 @@ namespace WorldCupPredictor.Data
 {
     public class Group
     {
+        private List<Team> teams;
+
         private Group()
         {
         }
@@ -27,12 +29,50 @@ namespace WorldCupPredictor.Data
                 teams.Add(match.TeamAway);
             });
 
-            this.Teams = teams.Distinct().ToList();
+            this.teams = teams.Distinct().OrderBy(team => team.Name).ToList();
         }
 
         public string Name { get; }
         public List<Match> Matches { get; }
-        public List<Team> Teams { get; }
+        public List<Team> Table
+        {
+            get
+            {
+                var initialOrder = this.teams.OrderByDescending(team => team.Points)
+                    .ThenByDescending(team => team.GoalDifference)
+                    .ThenByDescending(team => team.GoalsScored).ToList();
+
+                var updatedOrder = initialOrder.ToList();
+
+                // If teams have the same points, GD, GS, alter position by VS result
+                for (var i = 0; i < initialOrder.Count - 1; i++)
+                {
+                    var team1 = initialOrder[i];
+                    var team2 = initialOrder[i + 1];
+
+                    if (team1.Points == team2.Points &&
+                        team1.GoalDifference == team2.GoalDifference &&
+                        team1.GoalsScored == team2.GoalsScored)
+                    {
+                        var match = this.Matches.Find(m =>
+                        m.TeamHome == team1 || m.TeamAway == team1 &&
+                        m.TeamHome == team2 || m.TeamAway == team2);
+
+                        var team2Won = (match.TeamHome == team2 && match.Result == Result.HomeWin) ||
+                            (match.TeamAway == team2 && match.Result == Result.AwayWin);
+
+                        if (team2Won)
+                        {
+                            var teamToDropAPlace = updatedOrder[i];
+                            updatedOrder[i] = updatedOrder[i+1];
+                            updatedOrder[i+1] = teamToDropAPlace;
+                        }
+                    }
+                }
+
+                return updatedOrder;
+            }
+        }
 
         public override string ToString()
         {

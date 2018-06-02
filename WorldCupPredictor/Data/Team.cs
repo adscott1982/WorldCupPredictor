@@ -17,6 +17,14 @@
 
         public Group Group { get; set; }
 
+        public int GoalsScored { get; set; }
+
+        public int GoalsConceded { get; set; }
+
+        public int Points { get; set; }
+
+        public int GoalDifference => this.GoalsScored - this.GoalsConceded;
+
         public override string ToString()
         {
             return $"{this.Name}";
