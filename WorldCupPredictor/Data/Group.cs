@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace WorldCupPredictor.Data
 {
-    public class Group
+    public class Group : BindableBase
     {
         private List<Team> teams;
+        private ObservableCollection<Team> _table;
 
         private Group()
         {
@@ -15,7 +18,8 @@ namespace WorldCupPredictor.Data
         public Group(string name, List<Match> matches)
         {
             this.Name = name;
-            this.Matches = matches;
+            this.Matches = new ObservableCollection<Match>(matches);
+            this.Table = new ObservableCollection<Team>();
 
             var teams = new List<Team>();
 
@@ -30,53 +34,100 @@ namespace WorldCupPredictor.Data
             });
 
             this.teams = teams.Distinct().OrderBy(team => team.Name).ToList();
+            this.UpdateTable();
         }
 
         public string Name { get; }
-        public List<Match> Matches { get; }
-        public List<Team> Table
+
+        public ObservableCollection<Match> Matches { get; }
+
+        public ObservableCollection<Team> Table
         {
-            get
-            {
-                var initialOrder = this.teams.OrderByDescending(team => team.Points)
-                    .ThenByDescending(team => team.GoalDifference)
-                    .ThenByDescending(team => team.GoalsScored).ToList();
-
-                var updatedOrder = initialOrder.ToList();
-
-                // If teams have the same points, GD, GS, alter position by VS result
-                for (var i = 0; i < initialOrder.Count - 1; i++)
-                {
-                    var team1 = initialOrder[i];
-                    var team2 = initialOrder[i + 1];
-
-                    if (team1.Points == team2.Points &&
-                        team1.GoalDifference == team2.GoalDifference &&
-                        team1.GoalsScored == team2.GoalsScored)
-                    {
-                        var match = this.Matches.Find(m =>
-                        m.TeamHome == team1 || m.TeamAway == team1 &&
-                        m.TeamHome == team2 || m.TeamAway == team2);
-
-                        var team2Won = (match.TeamHome == team2 && match.Result == Result.HomeWin) ||
-                            (match.TeamAway == team2 && match.Result == Result.AwayWin);
-
-                        if (team2Won)
-                        {
-                            var teamToDropAPlace = updatedOrder[i];
-                            updatedOrder[i] = updatedOrder[i+1];
-                            updatedOrder[i+1] = teamToDropAPlace;
-                        }
-                    }
-                }
-
-                return updatedOrder;
-            }
+            get => this._table;
+            set => this.SetProperty(ref this._table, value);
         }
 
         public override string ToString()
         {
             return $"{this.Name}";
+        }
+
+        public void UpdateTable()
+        {
+            this.CalculateResults();
+
+            var initialOrder = this.teams.OrderByDescending(team => team.Points)
+                   .ThenByDescending(team => team.GoalDifference)
+                   .ThenByDescending(team => team.GoalsScored).ToList();
+
+            var updatedOrder = initialOrder.ToList();
+
+            // If teams have the same points, GD, GS, alter position by VS result
+            for (var i = 0; i < initialOrder.Count - 1; i++)
+            {
+                var team1 = initialOrder[i];
+                var team2 = initialOrder[i + 1];
+
+                if (team1.Points == team2.Points &&
+                    team1.GoalDifference == team2.GoalDifference &&
+                    team1.GoalsScored == team2.GoalsScored)
+                {
+                    var match = this.Matches.ToList().Find(m =>
+                    m.TeamHome == team1 || m.TeamAway == team1 &&
+                    m.TeamHome == team2 || m.TeamAway == team2);
+
+                    var team2Won = (match.TeamHome == team2 && match.Result == Result.HomeWin) ||
+                        (match.TeamAway == team2 && match.Result == Result.AwayWin);
+
+                    if (team2Won)
+                    {
+                        var teamToDropAPlace = updatedOrder[i];
+                        updatedOrder[i] = updatedOrder[i + 1];
+                        updatedOrder[i + 1] = teamToDropAPlace;
+                    }
+                }
+            }
+
+            this.Table?.Clear();
+            this.Table?.AddRange(updatedOrder);
+        }
+
+        private void CalculateResults()
+        {
+            this.teams.ForEach(team => team.Reset());
+
+            foreach(var match in this.Matches)
+            {
+                match.UpdateResult();
+
+                switch (match.Result)
+                {
+                    case Result.NotPlayed:
+                        return;
+                    case Result.HomeWin:
+                        match.TeamHome.Points += 3;
+                        match.TeamHome.Won++;
+                        match.TeamAway.Lost++;
+                        break;
+                    case Result.AwayWin:
+                        match.TeamAway.Points += 3;
+                        match.TeamAway.Won++;
+                        match.TeamHome.Lost++;
+                        break;
+                    case Result.Draw:
+                        match.TeamAway.Points++;
+                        match.TeamHome.Points++;
+                        match.TeamAway.Drawn++;
+                        match.TeamHome.Drawn++;
+                        break;
+                }
+
+                match.TeamHome.GoalsScored += match.HomeScore.Value;
+                match.TeamHome.GoalsConceded += match.AwayScore.Value;
+
+                match.TeamAway.GoalsScored += match.AwayScore.Value;
+                match.TeamAway.GoalsConceded += match.HomeScore.Value;
+            }
         }
     }
 

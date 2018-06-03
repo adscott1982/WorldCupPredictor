@@ -1,7 +1,24 @@
-﻿namespace WorldCupPredictor.Data
+﻿using Prism.Mvvm;
+using System;
+
+namespace WorldCupPredictor.Data
 {
-    public class Team
+    public class Team : BindableBase
     {
+        private uint _won;
+
+        private uint _drawn;
+
+        private uint _lost;
+
+        private uint _goalsScored;
+
+        private uint _goalsConceded;
+
+        private int _goalDifference;
+
+        private uint _points;
+
         private Team()
         {
         }
@@ -17,17 +34,71 @@
 
         public Group Group { get; set; }
 
-        public int GoalsScored { get; set; }
+        public uint Won
+        {
+            get => this._won;
+            set => this.SetProperty(ref this._won, value);
+        }
 
-        public int GoalsConceded { get; set; }
 
-        public int Points { get; set; }
+        public uint Drawn
+        {
+            get => this._drawn;
+            set => this.SetProperty(ref this._drawn, value);
+        }
 
-        public int GoalDifference => this.GoalsScored - this.GoalsConceded;
+        public uint Lost
+        {
+            get => this._lost;
+            set => this.SetProperty(ref this._lost, value);
+        }
+
+        public uint GoalsScored
+        {
+            get => this._goalsScored;
+            set
+            {
+                this.SetProperty(ref this._goalsScored, value);
+                this.GoalDifference = (int)this.GoalsScored - (int)this.GoalsConceded;
+            }
+            
+        }
+
+        public uint GoalsConceded
+        {
+            get => this._goalsConceded;
+            set
+            {
+                this.SetProperty(ref this._goalsConceded, value);
+                this.GoalDifference = (int)this.GoalsScored - (int)this.GoalsConceded;
+            }
+        }
+
+        public uint Points
+        {
+            get => this._points;
+            set => this.SetProperty(ref this._points, value);
+        }
+
+        public int GoalDifference
+        {
+            get => this._goalDifference;
+            set => this.SetProperty(ref this._goalDifference, value);
+        }
 
         public override string ToString()
         {
             return $"{this.Name}";
+        }
+
+        internal void Reset()
+        {
+            this.Won = 0;
+            this.Drawn = 0;
+            this.Lost = 0;
+            this.GoalsScored = 0;
+            this.GoalsConceded = 0;
+            this.Points = 0;
         }
     }
 

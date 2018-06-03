@@ -1,22 +1,31 @@
 ﻿using Prism.Mvvm;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using WorldCupPredictor.Data;
 
 namespace WorldCupPredictor
 {
     public class MainWindowViewModel : BindableBase
     {
-        private List<MatchDay> _matchDays;
+        private ObservableCollection<MatchDay> _matchDays;
+        private ObservableCollection<Group> _groups;
 
         public MainWindowViewModel()
         {
-            this.MatchDays = new List<MatchDay>(MatchesHelper.GetAllMatchDays());
+            this.MatchDays = new ObservableCollection<MatchDay>(MatchesHelper.GetAllMatchDays());
+            this.Groups = new ObservableCollection<Group>(MatchesHelper.GetAllGroups());
         }
 
-        public List<MatchDay> MatchDays
+        public ObservableCollection<MatchDay> MatchDays
         {
             get => this._matchDays;
             set => this.SetProperty(ref this._matchDays, value);
+        }
+
+        public ObservableCollection<Group> Groups
+        {
+            get => this._groups;
+            set => this.SetProperty(ref this._groups, value);
         }
     }
 }

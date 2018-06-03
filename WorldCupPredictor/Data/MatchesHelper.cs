@@ -21,6 +21,10 @@ namespace WorldCupPredictor.Data
             return new DateTime(time.Year, time.Month, time.Day);
         }
 
+        internal static IEnumerable<Group> GetAllGroups()
+        {
+            return Groups.All;
+        }
 
         private static IEnumerable<Match> GetAllMatches()
         {
