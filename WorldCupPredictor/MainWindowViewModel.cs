@@ -47,8 +47,7 @@ namespace WorldCupPredictor
         private void OnSubmit()
         {
             var allMatches = this.MatchDays.SelectMany(matchDay => matchDay.Matches);
-            var allTables = this.Groups.SelectMany(group => group.Table);
-            var predictions = new Predictions(allMatches, allTables);
+            var predictions = new Predictions(allMatches, this.Groups);
             var filePath = Path.Combine(GetExecutingAssemblyDirectory(), $"{this.Name}.json");
 
             var output = JsonConvert.SerializeObject(predictions, Formatting.Indented);

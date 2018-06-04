@@ -82,6 +82,8 @@
     <Compile Include="Data\Match.cs" />
     <Compile Include="Data\MatchDay.cs" />
     <Compile Include="Data\MatchesHelper.cs" />
+    <Compile Include="Data\TablePrediction.cs" />
+    <Compile Include="Data\MatchPrediction.cs" />
     <Compile Include="Data\Predictions.cs" />
     <Compile Include="Data\Team.cs" />
     <Compile Include="MainWindow.xaml.cs">
