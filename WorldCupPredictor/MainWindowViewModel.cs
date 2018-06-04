@@ -57,6 +57,7 @@ namespace WorldCupPredictor
             var filePath = Path.Combine(directory, $"{this.Name}.json");
 
             var output = JsonConvert.SerializeObject(predictions, Formatting.Indented);
+
             try
             {
                 File.WriteAllText(filePath, output);
