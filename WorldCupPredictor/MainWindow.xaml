@@ -34,8 +34,8 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             
             <!--Predictions Column-->
@@ -104,17 +104,18 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Text="Team" Style="{StaticResource Normal}" TextAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="1" Text="W" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="2" Text="D" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="3" Text="L" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="4" Text="GF" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="5" Text="GA" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="6" Text="GD" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="7" Text="Pts" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
-                                <Line Grid.ColumnSpan="8" Stroke="Black" />
+                                <TextBlock Grid.Column="1" Text="Pld" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="2" Text="W" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="3" Text="D" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="4" Text="L" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="5" Text="GF" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="6" Text="GA" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="7" Text="GD" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="8" Text="Pts" Style="{StaticResource Normal}" TextAlignment="Center" FontWeight="Bold"/>
                             </Grid>
                             <ListView ItemsSource="{Binding Table}" BorderThickness="0" ItemContainerStyle="{StaticResource ItemNonHighlight}"
                                       HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False">
@@ -136,15 +137,17 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Style="{StaticResource Normal}" Grid.Column="0" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="1" Text="{Binding Won}" TextAlignment="Center" VerticalAlignment="Center"/>
-                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="2" Text="{Binding Drawn}" TextAlignment="Center" VerticalAlignment="Center"/>
-                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="3" Text="{Binding Lost}" TextAlignment="Center" VerticalAlignment="Center"/>
-                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="4" Text="{Binding GoalsScored}" TextAlignment="Center" VerticalAlignment="Center"/>
-                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="5" Text="{Binding GoalsConceded}" TextAlignment="Center" VerticalAlignment="Center"/>
-                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="6" Text="{Binding GoalDifference}" TextAlignment="Center" VerticalAlignment="Center"/>
-                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="7" Text="{Binding Points}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="1" Text="{Binding Played}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="2" Text="{Binding Won}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="3" Text="{Binding Drawn}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="4" Text="{Binding Lost}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="5" Text="{Binding GoalsScored}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="6" Text="{Binding GoalsConceded}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="7" Text="{Binding GoalDifference}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Style="{StaticResource Normal}" Grid.Column="8" Text="{Binding Points}" TextAlignment="Center" VerticalAlignment="Center"/>
                                             </Grid>
                                         </StackPanel>
 

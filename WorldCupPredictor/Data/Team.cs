@@ -1,10 +1,11 @@
 ﻿using Prism.Mvvm;
-using System;
 
 namespace WorldCupPredictor.Data
 {
     public class Team : BindableBase
     {
+        private uint _played;
+
         private uint _won;
 
         private uint _drawn;
@@ -33,6 +34,12 @@ namespace WorldCupPredictor.Data
         public string Name { get; }
 
         public Group Group { get; set; }
+
+        public uint Played
+        {
+            get => this._played;
+            set => this.SetProperty(ref this._played, value);
+        }
 
         public uint Won
         {
@@ -93,6 +100,7 @@ namespace WorldCupPredictor.Data
 
         internal void Reset()
         {
+            this.Played = 0;
             this.Won = 0;
             this.Drawn = 0;
             this.Lost = 0;

@@ -103,7 +103,7 @@ namespace WorldCupPredictor.Data
                 switch (match.Result)
                 {
                     case Result.NotPlayed:
-                        return;
+                        continue;
                     case Result.HomeWin:
                         match.TeamHome.Points += 3;
                         match.TeamHome.Won++;
@@ -121,6 +121,9 @@ namespace WorldCupPredictor.Data
                         match.TeamHome.Drawn++;
                         break;
                 }
+
+                match.TeamHome.Played++;
+                match.TeamAway.Played++;
 
                 match.TeamHome.GoalsScored += match.HomeScore.Value;
                 match.TeamHome.GoalsConceded += match.AwayScore.Value;

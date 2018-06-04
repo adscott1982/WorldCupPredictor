@@ -99,7 +99,6 @@ namespace WorldCupPredictor.Data
                           HomeScore > AwayScore ? Result.HomeWin :
                           Result.AwayWin;
         }
-
     }
 
     public enum Result
