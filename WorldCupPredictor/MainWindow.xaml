@@ -163,7 +163,7 @@
             </ListView>
 
             <!--Submission Row-->
-            <Grid Margin="10" Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
