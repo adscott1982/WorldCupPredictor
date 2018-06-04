@@ -26,22 +26,37 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!--Fixtures Grid-->
         <Grid Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            
+
+            <Grid Margin="10" Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Padding="5" Style="{StaticResource Header1}" Text="Enter your name:" VerticalAlignment="Center"/>
+                <TextBox Padding="5" Grid.Column="1" FontSize="24" Text="{Binding Name}" VerticalAlignment="Center" Margin="5" />
+                <Button Padding="5" Grid.Column="2" Content="Submit" FontSize="24" Margin="5" Command="{Binding SubmitCommand}"/>
+            </Grid>
+             
             <!--Predictions Column-->
-            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Header1}" Text="Score Predictions" TextAlignment="Center" TextDecorations="Underline"/>
-            <ListView BorderThickness="0" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MatchDays}" 
+            <Button HorizontalAlignment="Left" Width="60" Grid.Column="0" Grid.Row="0" Content="Generate" Command="{Binding GenerateCommand}"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Header1}" Text="Score Predictions   " TextAlignment="Center" TextDecorations="Underline"/>
+            <ListView BorderThickness="0" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MatchDays}"
                       HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" ItemContainerStyle="{StaticResource ItemNonHighlight}">
+                
+                
                 <ListView.ItemTemplate>
                     <ItemContainerTemplate>
                         <StackPanel >
@@ -86,7 +101,7 @@
             </ListView>
             
             <!--Group Tables Column-->
-            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource Header1}" Text="Tables" TextAlignment="Center" TextDecorations="Underline"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource Header1}" Text="Tables   " TextAlignment="Center" TextDecorations="Underline"/>
 
             <ListView BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Groups}" 
                       HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" ItemContainerStyle="{StaticResource ItemNonHighlight}">

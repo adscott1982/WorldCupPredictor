@@ -49,7 +49,7 @@ namespace WorldCupPredictor.Data
                     this.HomeScore = null;
                 }
 
-                this.TeamHome.Group.UpdateTable();
+                this.TeamHome.Group?.UpdateTable();
             }
         }
 
@@ -75,7 +75,7 @@ namespace WorldCupPredictor.Data
                     this.AwayScore = null;
                 }
 
-                this.TeamAway.Group.UpdateTable();
+                this.TeamAway.Group?.UpdateTable();
             }
         }
 

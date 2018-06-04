@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using Newtonsoft.Json;
+using Prism.Mvvm;
 
 namespace WorldCupPredictor.Data
 {
@@ -33,6 +34,7 @@ namespace WorldCupPredictor.Data
 
         public string Name { get; }
 
+        [JsonIgnore]
         public Group Group { get; set; }
 
         public uint Played

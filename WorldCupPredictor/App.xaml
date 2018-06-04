@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:WorldCupPredictor"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
         <Style x:Key="Header1" TargetType="TextBlock">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
