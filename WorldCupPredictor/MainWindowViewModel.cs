@@ -51,7 +51,7 @@ namespace WorldCupPredictor
         private void OnSubmit()
         {
             var allMatches = this.MatchDays.SelectMany(matchDay => matchDay.Matches);
-            var predictions = new Predictions(allMatches, this.Groups);
+            var predictions = new Predictions(this.Name, allMatches, this.Groups);
             var directory = Path.Combine(GetExecutingAssemblyDirectory(), "Predictions");
             Directory.CreateDirectory(directory);
             var filePath = Path.Combine(directory, $"{this.Name}.json");

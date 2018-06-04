@@ -9,15 +9,18 @@ namespace WorldCupPredictor.Data
         {
         }
 
-        public Predictions(IEnumerable<Match> matches, IEnumerable<Group> groups)
+        public Predictions(string name, IEnumerable<Match> matches, IEnumerable<Group> groups)
         {
+            this.Name = name;
+
             this.MatchPredictions = matches.Select(match => new MatchPrediction
             {
                 Id = match.Id,
                 HomeTeam = match.TeamHome.Name,
                 AwayTeam = match.TeamAway.Name,
                 HomeScore = match.HomeScore.Value,
-                AwayScore = match.AwayScore.Value
+                AwayScore = match.AwayScore.Value,
+                Result = match.Result
             });
 
             this.TablePredictions = groups.Select(group => new TablePrediction
@@ -29,6 +32,8 @@ namespace WorldCupPredictor.Data
                 Fourth = group.Table[3].Name
             });
         }
+
+        public string Name { get; set; }
 
         public IEnumerable<MatchPrediction> MatchPredictions { get; set; }
 

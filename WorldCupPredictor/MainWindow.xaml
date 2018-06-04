@@ -72,7 +72,7 @@
                                                 <TextBlock Style="{StaticResource Normal}" Grid.Column="1" Text="{Binding TeamHome.Name}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                                 <TextBox Grid.Column="2" Style="{StaticResource TextBoxNormal}" Text="{Binding HomeScoreString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotKeyboardFocus="OnEnteringScore"/>
                                                 <TextBlock Style="{StaticResource Normal}"  Grid.Column="3" Text="{Binding Time, StringFormat='{}{0:HH:mm}'}" VerticalAlignment="Center"/>
-                                                <TextBox Grid.Column="4" Style="{StaticResource TextBoxNormal}" Text="{Binding AwayScoreString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <TextBox Grid.Column="4" Style="{StaticResource TextBoxNormal}" Text="{Binding AwayScoreString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotKeyboardFocus="OnEnteringScore"/>
                                                 <TextBlock Style="{StaticResource Normal}"  Grid.Column="5" Text="{Binding TeamAway.Name}" VerticalAlignment="Center"/>
                                                 <Image Height="50" Grid.Column="6" Source="{Binding TeamAway.ImagePath}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                                             </Grid>

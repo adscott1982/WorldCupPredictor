@@ -21,6 +21,7 @@ namespace WorldCupPredictor
         private void OnEnteringScore(object sender, KeyboardFocusChangedEventArgs e)
         {
             var textbox = (TextBox)sender;
+            textbox.SelectAll();
             var presenter = (ContentPresenter)textbox.TemplatedParent;
             var match = (Match)presenter.Content;
 
