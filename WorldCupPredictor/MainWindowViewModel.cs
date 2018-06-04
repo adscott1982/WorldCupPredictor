@@ -52,17 +52,31 @@ namespace WorldCupPredictor
         {
             var allMatches = this.MatchDays.SelectMany(matchDay => matchDay.Matches);
             var predictions = new Predictions(allMatches, this.Groups);
-            var filePath = Path.Combine(GetExecutingAssemblyDirectory(), $"{this.Name}.json");
+            var directory = Path.Combine(GetExecutingAssemblyDirectory(), "Predictions");
+            Directory.CreateDirectory(directory);
+            var filePath = Path.Combine(directory, $"{this.Name}.json");
 
             var output = JsonConvert.SerializeObject(predictions, Formatting.Indented);
-            File.WriteAllText(filePath, output);
+            try
+            {
+                File.WriteAllText(filePath, output);
 
-            var deserializedPredictions = JsonConvert.DeserializeObject<Predictions>(File.ReadAllText(filePath));
-            MessageBox.Show($"Well done {this.Name} your submission was successful. \n\n" +
-                $"You have successfully pressed the number keys on your computer in a seemingly random order. " +
-                $"Good luck! Let's see if you can beat an octopus.\n\n" +
-                $"Cem and Andy and any other members of the organising committee will be in touch in due course.\n\n" +
-                $"The app will now close.", "All done");
+                MessageBox.Show($"Well done {this.Name}, your submission was successful. \n\n" +
+                                $"You have successfully pressed the number keys on your computer in a seemingly random order. " +
+                                $"Good luck! Let's see if you can beat an octopus.\n\n" +
+                                $"Cem and Andy and any other members of the organising committee will be in touch in due course.\n\n" +
+                                $"The app will now close.", "All done");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(
+                    $"Unable to save your predictions, please contact technical support! (Andy Scott), exception info:\n\n{e.Message}"
+                    + $"\n\n The technical bit:\n\n{e.StackTrace}",
+                    "Catastrophic Failure!",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+
             Environment.Exit(0);
         }
 
@@ -77,6 +91,13 @@ namespace WorldCupPredictor
             var codeBase = Assembly.GetExecutingAssembly().CodeBase;
             var uri = new UriBuilder(codeBase);
             var path = Uri.UnescapeDataString(uri.Path);
+
+            // If it is a network path insert the host name
+            if (!string.IsNullOrWhiteSpace(uri.Host))
+            {
+                path = $@"\\{uri.Host}{path}";
+            }
+
             return Path.GetDirectoryName(path);
         }
 
