@@ -16,10 +16,12 @@ namespace WorldCupPredictor
         private ObservableCollection<MatchDay> _matchDays;
         private ObservableCollection<Group> _groups;
         private string _name;
+        private readonly Random _random;
+
 
         public MainWindowViewModel()
         {
-            this.random = new Random(DateTime.Now.Millisecond);
+            this._random = new Random(DateTime.Now.Millisecond);
             this.MatchDays = new ObservableCollection<MatchDay>(MatchesHelper.GetAllMatchDays());
             this.Groups = new ObservableCollection<Group>(MatchesHelper.GetAllGroups());
 
@@ -33,8 +35,8 @@ namespace WorldCupPredictor
         {
             foreach(var match in this.MatchDays.SelectMany(matchDay => matchDay.Matches))
             {
-                match.HomeScoreString = this.random.Next(0, 5).ToString();
-                match.AwayScoreString = this.random.Next(0, 5).ToString();
+                match.HomeScoreString = this._random.Next(0, 5).ToString();
+                match.AwayScoreString = this._random.Next(0, 5).ToString();
             }
         }
 
@@ -77,8 +79,6 @@ namespace WorldCupPredictor
             var path = Uri.UnescapeDataString(uri.Path);
             return Path.GetDirectoryName(path);
         }
-
-        private readonly Random random;
 
         public ObservableCollection<MatchDay> MatchDays
         {
