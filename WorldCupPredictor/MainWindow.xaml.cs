@@ -14,7 +14,7 @@ namespace WorldCupPredictor
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.DataContext = new MainWindowViewModel();
         }
 
@@ -24,7 +24,7 @@ namespace WorldCupPredictor
             var presenter = (ContentPresenter)textbox.TemplatedParent;
             var match = (Match)presenter.Content;
 
-            GroupsListView.ScrollIntoView(match.TeamHome.Group);
+            this.GroupsListView.ScrollIntoView(match.TeamHome.Group);
         }
     }
 }

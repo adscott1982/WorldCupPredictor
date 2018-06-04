@@ -42,7 +42,7 @@ namespace WorldCupPredictor
         {
             var allMatches = this.MatchDays.SelectMany(matchDay => matchDay.Matches);
             
-            return !allMatches.Any(match => match.Result == Result.NotPlayed) 
+            return allMatches.All(match => match.Result != Result.NotPlayed) 
                 && !string.IsNullOrWhiteSpace(this.Name);
         }
 
@@ -78,7 +78,7 @@ namespace WorldCupPredictor
             return Path.GetDirectoryName(path);
         }
 
-        private Random random;
+        private readonly Random random;
 
         public ObservableCollection<MatchDay> MatchDays
         {

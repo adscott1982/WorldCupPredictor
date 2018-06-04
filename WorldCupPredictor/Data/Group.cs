@@ -8,12 +8,8 @@ namespace WorldCupPredictor.Data
 {
     public class Group : BindableBase
     {
-        private List<Team> teams;
+        private readonly List<Team> _teams;
         private ObservableCollection<Team> _table;
-
-        private Group()
-        {
-        }
 
         public Group(string name, List<Match> matches)
         {
@@ -33,7 +29,7 @@ namespace WorldCupPredictor.Data
                 teams.Add(match.TeamAway);
             });
 
-            this.teams = teams.Distinct().OrderBy(team => team.Name).ToList();
+            this._teams = teams.Distinct().OrderBy(team => team.Name).ToList();
             this.UpdateTable();
         }
 
@@ -56,7 +52,7 @@ namespace WorldCupPredictor.Data
         {
             this.CalculateResults();
 
-            var initialOrder = this.teams.OrderByDescending(team => team.Points)
+            var initialOrder = this._teams.OrderByDescending(team => team.Points)
                    .ThenByDescending(team => team.GoalDifference)
                    .ThenByDescending(team => team.GoalsScored).ToList();
 
@@ -94,7 +90,7 @@ namespace WorldCupPredictor.Data
 
         private void CalculateResults()
         {
-            this.teams.ForEach(team => team.Reset());
+            this._teams.ForEach(team => team.Reset());
 
             foreach(var match in this.Matches)
             {
