@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:WorldCupPredictor"
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-        Title="World Cup Predictor" Height="720" Width="1280">
+        Title="World Cup Group Stage Predictor" Height="720" Width="1280">
     <Window.Resources>
         <Style x:Key="ItemNonHighlight" TargetType="{x:Type ListViewItem}">
             <Setter Property="Background" Value="Transparent" />
+            <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -37,35 +38,21 @@
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-
-            <Grid Margin="10" Grid.Row="2" Grid.ColumnSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Padding="5" Style="{StaticResource Header1}" Text="Enter your name:" VerticalAlignment="Center"/>
-                <TextBox Padding="5" Grid.Column="1" FontSize="24" Text="{Binding Name}" VerticalAlignment="Center" Margin="5" />
-                <Button Padding="5" Grid.Column="2" Content="Submit" FontSize="24" Margin="5" Command="{Binding SubmitCommand}"/>
-            </Grid>
-             
+               
             <!--Predictions Column-->
-            <Button HorizontalAlignment="Left" Width="60" Grid.Column="0" Grid.Row="0" Content="Generate" Command="{Binding GenerateCommand}"/>
             <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource Header1}" Text="Score Predictions   " TextAlignment="Center" TextDecorations="Underline"/>
             <ListView BorderThickness="0" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MatchDays}"
-                      HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" ItemContainerStyle="{StaticResource ItemNonHighlight}">
-                
-                
+                      HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" ItemContainerStyle="{StaticResource ItemNonHighlight}" KeyboardNavigation.TabNavigation="Continue">
+
                 <ListView.ItemTemplate>
                     <ItemContainerTemplate>
-                        <StackPanel >
-                            <TextBlock Style="{StaticResource Header2}" HorizontalAlignment="Center" Text="{Binding Day, StringFormat='{}{0:dddd dd MMMM}'}" />
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource Header2}" HorizontalAlignment="Center" Text="{Binding Day, StringFormat='{}{0:dddd dd MMMM}'}"/>
                             <ListView ItemsSource="{Binding Matches}" BorderThickness="0" ItemContainerStyle="{StaticResource ItemNonHighlight}"
-                                      HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False">
+                                      HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" KeyboardNavigation.TabNavigation="Continue" >
                                 <ListView.Template>
                                     <ControlTemplate>
-                                        <ItemsPresenter />
+                                        <ItemsPresenter KeyboardNavigation.IsTabStop="False"/>
                                     </ControlTemplate>
                                 </ListView.Template>
                                 <ListView.ItemTemplate>
@@ -83,7 +70,7 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Image Height="50" Grid.Column="0" Source="{Binding TeamHome.ImagePath}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                                                 <TextBlock Style="{StaticResource Normal}" Grid.Column="1" Text="{Binding TeamHome.Name}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                                <TextBox Grid.Column="2" Style="{StaticResource TextBoxNormal}" Text="{Binding HomeScoreString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                <TextBox Grid.Column="2" Style="{StaticResource TextBoxNormal}" Text="{Binding HomeScoreString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotKeyboardFocus="OnEnteringScore"/>
                                                 <TextBlock Style="{StaticResource Normal}"  Grid.Column="3" Text="{Binding Time, StringFormat='{}{0:HH:mm}'}" VerticalAlignment="Center"/>
                                                 <TextBox Grid.Column="4" Style="{StaticResource TextBoxNormal}" Text="{Binding AwayScoreString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                                 <TextBlock Style="{StaticResource Normal}"  Grid.Column="5" Text="{Binding TeamAway.Name}" VerticalAlignment="Center"/>
@@ -103,7 +90,7 @@
             <!--Group Tables Column-->
             <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource Header1}" Text="Tables   " TextAlignment="Center" TextDecorations="Underline"/>
 
-            <ListView BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Groups}" 
+            <ListView Name="GroupsListView" BorderThickness="0" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Groups}" 
                       HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False" ItemContainerStyle="{StaticResource ItemNonHighlight}">
                 <ListView.ItemTemplate>
                     <ItemContainerTemplate>
@@ -174,6 +161,21 @@
                     </ItemContainerTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <!--Submission Row-->
+            <Grid Margin="10" Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Background="Pink" Margin="8" FontSize="24" Padding="5" IsTabStop="False" Visibility="Visible" HorizontalAlignment="Left" Content=" Auto-Generate :( " Command="{Binding GenerateCommand}"/>
+                <TextBlock Padding="5" Grid.Column="1" Style="{StaticResource Header1}" Text="Enter your name:" VerticalAlignment="Center"/>
+                <TextBox Padding="5" Grid.Column="2" FontSize="24" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="5" />
+                <Button Padding="5" Grid.Column="3" Content="Submit" FontSize="24" Margin="8" Command="{Binding SubmitCommand}"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

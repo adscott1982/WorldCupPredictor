@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using WorldCupPredictor.Data;
 
 namespace WorldCupPredictor
 {
@@ -11,6 +16,15 @@ namespace WorldCupPredictor
         {
             InitializeComponent();
             this.DataContext = new MainWindowViewModel();
+        }
+
+        private void OnEnteringScore(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            var presenter = (ContentPresenter)textbox.TemplatedParent;
+            var match = (Match)presenter.Content;
+
+            GroupsListView.ScrollIntoView(match.TeamHome.Group);
         }
     }
 }

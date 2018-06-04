@@ -23,7 +23,9 @@ namespace WorldCupPredictor
             this.MatchDays = new ObservableCollection<MatchDay>(MatchesHelper.GetAllMatchDays());
             this.Groups = new ObservableCollection<Group>(MatchesHelper.GetAllGroups());
 
-            this.SubmitCommand = new DelegateCommand(this.OnSubmit, this.CanSubmit).ObservesProperty(() => this.MatchDays);
+            this.SubmitCommand = new DelegateCommand(this.OnSubmit, this.CanSubmit)
+                .ObservesProperty(() => this.MatchDays)
+                .ObservesProperty(() => this.Name);
             this.GenerateCommand = new DelegateCommand(this.OnGenerate);
         }
 
@@ -39,9 +41,9 @@ namespace WorldCupPredictor
         private bool CanSubmit()
         {
             var allMatches = this.MatchDays.SelectMany(matchDay => matchDay.Matches);
-            return true;
-            //return !allMatches.Any(match => match.Result == Result.NotPlayed) &&
-            //       !string.IsNullOrWhiteSpace(this.Name);
+            
+            return !allMatches.Any(match => match.Result == Result.NotPlayed) 
+                && !string.IsNullOrWhiteSpace(this.Name);
         }
 
         private void OnSubmit()
@@ -54,7 +56,12 @@ namespace WorldCupPredictor
             File.WriteAllText(filePath, output);
 
             var deserializedPredictions = JsonConvert.DeserializeObject<Predictions>(File.ReadAllText(filePath));
-            MessageBox.Show($"Congratulations {this.Name}, your predictions have been submitted.");
+            MessageBox.Show($"Well done {this.Name} your submission was successful. \n\n" +
+                $"You have successfully pressed the number keys on your computer in a seemingly random order. " +
+                $"Good luck! Let's see if you can beat an octopus.\n\n" +
+                $"Cem and Andy and any other members of the organising committee will be in touch in due course.\n\n" +
+                $"The app will now close.", "All done");
+            Environment.Exit(0);
         }
 
         public string Name

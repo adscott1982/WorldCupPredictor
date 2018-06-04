@@ -7,7 +7,7 @@
     <ProjectGuid>{0B2B4DA6-E960-4BD8-9E13-1FA780FA8320}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>WorldCupPredictor</RootNamespace>
-    <AssemblyName>WorldCupPredictor</AssemblyName>
+    <AssemblyName>World Cup Group Stage Predictor</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -33,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>play.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -154,6 +157,9 @@
     <Resource Include="Flags\Egypt.png" />
     <Resource Include="Flags\Russia.png" />
     <Resource Include="Flags\Uruguay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="play.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
